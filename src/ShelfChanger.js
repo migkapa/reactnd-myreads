@@ -14,36 +14,34 @@ class ShelfChanger extends Component {
   }
 
   updateShelf = event => {
-    this.props.handleShelfChange(this.props.book, event.target.value)
-  }
-
+    this.props.handleShelfChange(this.props.book, event.target.value);
+  };
 
   render() {
-             const { book, books } = this.props;
-             let shelf = 'none';
+    const { book, books } = this.props;
+    let shelf = 'none';
 
-             for (const bookItem of books) {
-               
-               if(book.id === bookItem.id) {
-                 shelf = bookItem.shelf
-               }
-             }
+    for (const bookItem of books) {
+      if (book.id === bookItem.id) {
+        shelf = bookItem.shelf;
+      }
+    }
 
-             return (
-               <div className="book-shelf-changer">
-                 <select defaultValue={shelf} onChange={this.updateShelf}>
-                   <option value="move" disabled>
-                     Move to...
-                   </option>
-                   {this.options.map(option => (
-                     <option key={option.value} value={option.value}>
-                       {option.label}
-                     </option>
-                   ))}
-                 </select>
-               </div>
-             );
-           }
+    return (
+      <div className="book-shelf-changer">
+        <select defaultValue={shelf} onChange={this.updateShelf}>
+          <option value="move" disabled>
+            Move to...
+          </option>
+          {this.options.map(option => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </div>
+    );
+  }
 }
 
 export default ShelfChanger;
