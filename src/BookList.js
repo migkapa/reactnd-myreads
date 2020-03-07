@@ -5,7 +5,6 @@ import BookShelf from './BookShelf';
 
 const BookList = props => {
   const { books, handleShelfChange } = props;
-  console.log(books);
 
   return (
     <div className="list-books">
