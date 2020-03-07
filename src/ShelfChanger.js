@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class ShelfChanger extends Component {
   constructor(props) {
     super(props);
-    this.state = { shelf: '' };
 
     // creating options array for populating the select box
     this.options = [
@@ -20,22 +19,31 @@ class ShelfChanger extends Component {
 
 
   render() {
-    const { shelf } = this.props;
-    return (
-      <div className="book-shelf-changer">
-        <select defaultValue={shelf} onChange={ this.updateShelf }>
-          <option value="move" disabled>
-            Move to...
-          </option>
-          {this.options.map(option => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-      </div>
-    );
-  }
+             const { book, books } = this.props;
+             let shelf = 'none';
+
+             for (const bookItem of books) {
+               
+               if(book.id === bookItem.id) {
+                 shelf = bookItem.shelf
+               }
+             }
+
+             return (
+               <div className="book-shelf-changer">
+                 <select defaultValue={shelf} onChange={this.updateShelf}>
+                   <option value="move" disabled>
+                     Move to...
+                   </option>
+                   {this.options.map(option => (
+                     <option key={option.value} value={option.value}>
+                       {option.label}
+                     </option>
+                   ))}
+                 </select>
+               </div>
+             );
+           }
 }
 
 export default ShelfChanger;
